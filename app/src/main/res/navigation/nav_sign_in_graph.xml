@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signIn"
+    app:startDestination="@id/singInFragment">
+    <fragment
+        android:id="@+id/singInFragment"
+        android:name="com.mihailchistousov.navgraphs.fragments.SingInFragment"
+        android:label="SingInFragment"
+        tools:layout="@layout/in1">
+        <action
+            android:id="@+id/to_sign_in_2"
+            app:destination="@id/signIn2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signIn2Fragment"
+        android:name="com.mihailchistousov.navgraphs.fragments.SingIn2Fragment"
+        android:label="SignIn2Fragment"
+        tools:layout="@layout/in2">
+        <action
+            android:id="@+id/to_data"
+            app:destination="@id/dataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dataFragment"
+        android:name="com.mihailchistousov.navgraphs.fragments.DataFragment"
+        android:label="DataFragment"
+        tools:layout="@layout/data"/>
+    <action
+        android:id="@+id/to_main"
+        app:destination="@id/main"
+        app:launchSingleTop="true"
+        app:popUpToInclusive="true"
+        app:popUpTo="@id/nav_graph"/>
+</navigation>

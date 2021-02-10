@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.mihailchistousov.navgraphs.fragments.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/main">
+        <action
+            android:id="@+id/to_main_2"
+            app:destination="@id/main2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/main2Fragment"
+        android:name="com.mihailchistousov.navgraphs.fragments.Main2Fragment"
+        android:label="Main2Fragment"
+        tools:layout="@layout/main2"/>
+</navigation>
