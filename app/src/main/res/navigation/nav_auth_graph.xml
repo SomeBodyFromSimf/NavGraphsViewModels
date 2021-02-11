@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.mihailchistousov.navgraphs.fragments.MainFragment"
+        android:name="com.mihailchistousov.navgraphs.screens.auth.main.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/main">
         <action
@@ -15,7 +15,13 @@
     </fragment>
     <fragment
         android:id="@+id/main2Fragment"
-        android:name="com.mihailchistousov.navgraphs.fragments.Main2Fragment"
+        android:name="com.mihailchistousov.navgraphs.screens.auth.main2.Main2Fragment"
         android:label="Main2Fragment"
         tools:layout="@layout/main2"/>
+
+    <action
+        android:id="@+id/logOut"
+        app:destination="@id/choiceFragment"
+        app:popUpToInclusive="true"
+        app:popUpTo="@id/main"/>
 </navigation>

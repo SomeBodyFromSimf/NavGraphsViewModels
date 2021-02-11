@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.mihailchistousov.navgraphs.fragments.SplashFragment"
+        android:name="com.mihailchistousov.navgraphs.screens.nonauth.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/splash">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/choiceFragment"
-        android:name="com.mihailchistousov.navgraphs.fragments.ChoiceFragment"
+        android:name="com.mihailchistousov.navgraphs.screens.nonauth.choice.ChoiceFragment"
         android:label="ChoiceFragment"
         tools:layout="@layout/choice">
         <action
@@ -31,6 +31,6 @@
 
     <include app:graph="@navigation/nav_sign_up_graph" />
     <include app:graph="@navigation/nav_sign_in_graph"/>
-    <include app:graph="@navigation/nav_auth_graph"/>
+    <include app:graph="@navigation/nav_auth_graph" />
 
 </navigation>

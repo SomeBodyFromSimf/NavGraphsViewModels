@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="fragments.SignUp2Fragment"
+    tools:context=".screens.nonauth.signup.SignUp2Fragment"
     tools:ignore="HardcodedText">
 
     <TextView
@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/black"
+
         android:textSize="20sp"
         android:text="Это Up2" />
 

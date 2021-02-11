@@ -1,28 +1,25 @@
-package com.mihailchistousov.navgraphs.fragments
+package com.mihailchistousov.navgraphs.screens.nonauth.splash
 
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import com.mihailchistousov.navgraphs.R
 
-/**
- * Created by Mihail Chistousov on 10,Февраль,2021
- */
-class SignUpFragment: Fragment(R.layout.up) {
+class SplashFragment: Fragment(R.layout.splash) {
 
-    private val viewModel: SignUpVM by navGraphViewModels(R.id.signUp)
+    private val viewModel: SplashVM by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val s = viewModel.getSum()
-        Log.d("BaseVM", "up sum is $s")
+        Log.d("BaseVM", "splash sum is $s")
         view.findViewById<Button>(R.id.go).setOnClickListener {
-            viewModel.changeSum(1)
-            findNavController().navigate(SignUpFragmentDirections.toSignUp2())
+            viewModel.changeSum(100)
+            findNavController().navigate(SplashFragmentDirections.toChoice())
         }
     }
 }

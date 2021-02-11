@@ -6,7 +6,7 @@
     app:startDestination="@id/signUpFragment">
         <fragment
             android:id="@+id/signUpFragment"
-            android:name="com.mihailchistousov.navgraphs.fragments.SignUpFragment"
+            android:name="com.mihailchistousov.navgraphs.screens.nonauth.signup.SignUpFragment"
             android:label="SignUpFragment"
             tools:layout="@layout/up">
             <action
@@ -15,7 +15,7 @@
         </fragment>
         <fragment
             android:id="@+id/signUp2Fragment"
-            android:name="com.mihailchistousov.navgraphs.fragments.SignUp2Fragment"
+            android:name="com.mihailchistousov.navgraphs.screens.nonauth.signup.SignUp2Fragment"
             android:label="SignUp2Fragment"
             tools:layout="@layout/up2"/>
 </navigation>

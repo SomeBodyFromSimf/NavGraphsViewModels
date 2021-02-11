@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_local_calls"
+    app:startDestination="@id/firstFr">
+
+    <fragment
+        android:id="@+id/firstFr"
+        android:name="com.mihailchistousov.navgraphs.screens.auth.main.localScreens.first.FirstFr"
+        android:label="first_local"
+        tools:layout="@layout/first_local" >
+        <action
+            android:id="@+id/toSecond"
+            app:destination="@id/firstSecFr" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstSecFr"
+        android:name="com.mihailchistousov.navgraphs.screens.auth.main.localScreens.first.FirstSecFr"
+        android:label="first2_local"
+        tools:layout="@layout/first2_local" />
+</navigation>

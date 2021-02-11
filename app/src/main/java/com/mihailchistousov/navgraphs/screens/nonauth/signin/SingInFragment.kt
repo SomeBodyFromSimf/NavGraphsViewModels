@@ -1,4 +1,4 @@
-package com.mihailchistousov.navgraphs.fragments
+package com.mihailchistousov.navgraphs.screens.nonauth.signin
 
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.mihailchistousov.navgraphs.R
 
-/**
- * Created by Mihail Chistousov on 10,Февраль,2021
- */
 class SingInFragment: Fragment(R.layout.in1) {
 
     private val viewModel: SignInVM by navGraphViewModels(R.id.signIn)

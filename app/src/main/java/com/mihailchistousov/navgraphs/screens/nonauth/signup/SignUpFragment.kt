@@ -1,4 +1,4 @@
-package com.mihailchistousov.navgraphs.fragments
+package com.mihailchistousov.navgraphs.screens.nonauth.signup
 
 import android.os.Bundle
 import android.util.Log
@@ -9,20 +9,17 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.mihailchistousov.navgraphs.R
 
-/**
- * Created by Mihail Chistousov on 10,Февраль,2021
- */
-class SignUp2Fragment: Fragment(R.layout.up2) {
+class SignUpFragment: Fragment(R.layout.up) {
 
     private val viewModel: SignUpVM by navGraphViewModels(R.id.signUp)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val s = viewModel.getSum()
-        Log.d("BaseVM", "up2 sum is $s")
+        Log.d("BaseVM", "up sum is $s")
         view.findViewById<Button>(R.id.go).setOnClickListener {
-            viewModel.changeSum(11)
-            findNavController().popBackStack(R.id.choiceFragment,false)
+            viewModel.changeSum(1)
+            findNavController().navigate(SignUpFragmentDirections.toSignUp2())
         }
     }
 }

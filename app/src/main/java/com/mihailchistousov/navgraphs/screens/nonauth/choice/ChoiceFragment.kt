@@ -1,4 +1,4 @@
-package com.mihailchistousov.navgraphs.fragments
+package com.mihailchistousov.navgraphs.screens.nonauth.choice
 
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mihailchistousov.navgraphs.R
 
-/**
- * Created by Mihail Chistousov on 10,Февраль,2021
- */
 class ChoiceFragment: Fragment(R.layout.choice) {
 
     private val viewModel: ChoiceVM by viewModels()

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_local_info"
+    app:startDestination="@id/thirdFr">
+
+    <fragment
+        android:id="@+id/thirdFr"
+        android:name="com.mihailchistousov.navgraphs.screens.auth.main.localScreens.third.ThirdFr"
+        android:label="third_local"
+        tools:layout="@layout/third_local" >
+        <action
+            android:id="@+id/toSecond"
+            app:destination="@id/thirdSecFr" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdSecFr"
+        android:name="com.mihailchistousov.navgraphs.screens.auth.main.localScreens.third.ThirdSecFr"
+        android:label="third2_local"
+        tools:layout="@layout/third2_local" />
+</navigation>

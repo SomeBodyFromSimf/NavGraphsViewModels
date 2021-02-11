@@ -6,7 +6,7 @@
     app:startDestination="@id/singInFragment">
     <fragment
         android:id="@+id/singInFragment"
-        android:name="com.mihailchistousov.navgraphs.fragments.SingInFragment"
+        android:name="com.mihailchistousov.navgraphs.screens.nonauth.signin.SingInFragment"
         android:label="SingInFragment"
         tools:layout="@layout/in1">
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/signIn2Fragment"
-        android:name="com.mihailchistousov.navgraphs.fragments.SingIn2Fragment"
+        android:name="com.mihailchistousov.navgraphs.screens.nonauth.signin.SingIn2Fragment"
         android:label="SignIn2Fragment"
         tools:layout="@layout/in2">
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/dataFragment"
-        android:name="com.mihailchistousov.navgraphs.fragments.DataFragment"
+        android:name="com.mihailchistousov.navgraphs.screens.nonauth.signin.DataFragment"
         android:label="DataFragment"
         tools:layout="@layout/data"/>
     <action

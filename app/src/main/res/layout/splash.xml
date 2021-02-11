@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.mihailchistousov.navgraphs.fragments.SplashFragment"
+    tools:context=".screens.nonauth.splash.SplashFragment"
     tools:ignore="HardcodedText">
 
     <TextView
@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/black"
+
         android:textSize="20sp"
         android:text="Это сплэш" />
 

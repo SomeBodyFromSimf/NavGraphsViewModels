@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">NavGraphs</string>
+    <string name="calls">Звонки</string>
+    <string name="end_calls">Пропущенные</string>
+    <string name="info">Информация</string>
 </resources>
