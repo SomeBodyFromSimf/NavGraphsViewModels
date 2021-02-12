@@ -52,8 +52,7 @@ fun NavigationView.setupWithNavController(
 
     // First create a NavHostFragment for each NavGraph ID
     navGraphIds.forEachIndexed { i, navGraphId ->
-        val index = i
-        val fragmentTag = "DrawerNavigation#$index"
+        val fragmentTag = "DrawerNavigation#$i"
 
         // Find or create the Navigation host fragment
         val navHostFragment = obtainNavHostFragment(
@@ -66,7 +65,7 @@ fun NavigationView.setupWithNavController(
         // Obtain its id
         val graphId = navHostFragment.navController.graph.id
 
-        if (index == 0) {
+        if (i == 0) {
             firstFragmentGraphId = graphId
         }
 
@@ -78,7 +77,7 @@ fun NavigationView.setupWithNavController(
         if ((this.menu.currentItem?.itemId) == graphId) {
             // Update livedata with the selected graph
             selectedNavController.value = navHostFragment.navController
-            attachNavHostFragment(fragmentManager, navHostFragment, index == 0)
+            attachNavHostFragment(fragmentManager, navHostFragment, i == 0)
         } else {
             detachNavHostFragment(fragmentManager, navHostFragment)
         }
@@ -148,6 +147,8 @@ fun NavigationView.setupWithNavController(
     // Finally, ensure that we update our BottomNavigationView when the back stack changes
     fragmentManager.addOnBackStackChangedListener {
         if (!isOnFirstFragment && !fragmentManager.isOnBackStack(firstFragmentTag)) {
+            menu.currentItem?.isChecked = false
+            menu.findItem(firstFragmentGraphId).isChecked = true
             this.setCheckedItem(firstFragmentGraphId)
         }
 
@@ -358,5 +359,3 @@ private fun FragmentManager.isOnBackStack(backStackName: String): Boolean {
     }
     return false
 }
-
-private fun getFragmentTag(index: Int) = "bottomNavigation#$index"
