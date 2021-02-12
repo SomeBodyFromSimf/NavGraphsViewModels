@@ -3,4 +3,9 @@
     <string name="calls">Звонки</string>
     <string name="end_calls">Пропущенные</string>
     <string name="info">Информация</string>
+    <string name="open">Открыть</string>
+    <string name="close">Закрыть</string>
+    <string name="main">Основной</string>
+    <string name="maps">Карты</string>
+    <string name="settings">Настройки</string>
 </resources>

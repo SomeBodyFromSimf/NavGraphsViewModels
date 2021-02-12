@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/thirdFr"
-        android:name="com.mihailchistousov.navgraphs.screens.auth.main.localScreens.third.ThirdFr"
+        android:name="com.mihailchistousov.navgraphs.screens.auth.main.main.localScreens.third.ThirdFr"
         android:label="third_local"
         tools:layout="@layout/third_local" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/thirdSecFr"
-        android:name="com.mihailchistousov.navgraphs.screens.auth.main.localScreens.third.ThirdSecFr"
+        android:name="com.mihailchistousov.navgraphs.screens.auth.main.main.localScreens.third.ThirdSecFr"
         android:label="third2_local"
         tools:layout="@layout/third2_local" />
 </navigation>

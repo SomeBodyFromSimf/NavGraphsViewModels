@@ -1,4 +1,4 @@
-package com.mihailchistousov.navgraphs.screens.auth.main.localScreens.first
+package com.mihailchistousov.navgraphs.screens.auth.main.main.localScreens.first
 
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mihailchistousov.navgraphs.R
 import com.mihailchistousov.navgraphs.requireGrandParentFragment
-import com.mihailchistousov.navgraphs.screens.auth.main.MainVM
+import com.mihailchistousov.navgraphs.screens.auth.main.main.MainVM
 
 class FirstSecFr : Fragment(R.layout.first2_local){
     private val viewModel: MainVM by viewModels({requireGrandParentFragment()})

@@ -1,4 +1,4 @@
-package com.mihailchistousov.navgraphs.screens.auth.main.localScreens.third
+package com.mihailchistousov.navgraphs.screens.auth.main.main.localScreens.third
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mihailchistousov.navgraphs.R
 import com.mihailchistousov.navgraphs.requireGrandParentFragment
-import com.mihailchistousov.navgraphs.screens.auth.main.MainVM
+import com.mihailchistousov.navgraphs.screens.auth.main.main.MainVM
 
 class ThirdFr : Fragment(R.layout.third_local){
     private val viewModel: MainVM by viewModels({requireGrandParentFragment()})

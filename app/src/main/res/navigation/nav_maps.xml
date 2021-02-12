@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/maps"
+    app:startDestination="@id/mapsFr">
+
+    <fragment
+        android:id="@+id/mapsFr"
+        android:name="com.mihailchistousov.navgraphs.screens.auth.main.maps.MapsFr"
+        android:label="MapsFr" >
+        <action
+            android:id="@+id/go_to_second"
+            app:destination="@id/mapsSecFr" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsSecFr"
+        android:name="com.mihailchistousov.navgraphs.screens.auth.main.maps.MapsSecFr"
+        android:label="MapsSecFr" />
+</navigation>

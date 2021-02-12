@@ -1,4 +1,4 @@
-package com.mihailchistousov.navgraphs.screens.auth.main.localScreens.second
+package com.mihailchistousov.navgraphs.screens.auth.main.main.localScreens.first
 
 import android.os.Bundle
 import android.util.Log
@@ -9,20 +9,20 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mihailchistousov.navgraphs.R
 import com.mihailchistousov.navgraphs.requireGrandParentFragment
-import com.mihailchistousov.navgraphs.screens.auth.main.MainVM
+import com.mihailchistousov.navgraphs.screens.auth.main.main.MainVM
 
-class SecondFr : Fragment(R.layout.second_local){
+class FirstFr : Fragment(R.layout.first_local){
     private val viewModel: MainVM by viewModels({requireGrandParentFragment()})
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val s = viewModel.getSum()
-        Log.d("BaseVM", "main local_21 sum is $s")
+        Log.d("BaseVM", "main local_11 sum is $s")
         view.findViewById<Button>(R.id.go_to_second).setOnClickListener {
-            viewModel.changeSum(21)
-            findNavController().navigate(SecondFrDirections.toSecond())
+            viewModel.changeSum(11)
+            findNavController().navigate(FirstFrDirections.toSecond())
         }
     }
+
 
 }

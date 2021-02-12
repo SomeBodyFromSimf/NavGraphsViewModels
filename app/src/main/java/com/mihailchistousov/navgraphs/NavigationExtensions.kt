@@ -16,22 +16,161 @@
 
 package com.mihailchistousov.navgraphs
 
-import android.content.Intent
 import android.util.SparseArray
+import android.view.Menu
+import android.view.MenuItem
 import androidx.core.util.forEach
 import androidx.core.util.set
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 
 /**
  * Manages the various graphs needed for a [BottomNavigationView].
  *
  * This sample is a workaround until the Navigation Component supports multiple back stacks.
  */
+
+fun NavigationView.setupWithNavController(
+    drawerLayout: DrawerLayout?,
+    navGraphIds: List<Int>,
+    fragmentManager: FragmentManager,
+    containerId: Int,
+): LiveData<NavController> {
+    // Map of tags
+    val graphIdToTagMap = SparseArray<String>()
+    // Result. Mutable live data with the selected controlled
+    val selectedNavController = MutableLiveData<NavController>()
+
+    var firstFragmentGraphId = 0
+
+    // First create a NavHostFragment for each NavGraph ID
+    navGraphIds.forEachIndexed { i, navGraphId ->
+        val index = i
+        val fragmentTag = "DrawerNavigation#$index"
+
+        // Find or create the Navigation host fragment
+        val navHostFragment = obtainNavHostFragment(
+            fragmentManager,
+            fragmentTag,
+            navGraphId,
+            containerId
+        )
+
+        // Obtain its id
+        val graphId = navHostFragment.navController.graph.id
+
+        if (index == 0) {
+            firstFragmentGraphId = graphId
+        }
+
+        // Save to the map
+        graphIdToTagMap[graphId] = fragmentTag
+
+        // Attach or detach nav host fragment depending on whether it's the selected item.
+
+        if ((this.menu.currentItem?.itemId) == graphId) {
+            // Update livedata with the selected graph
+            selectedNavController.value = navHostFragment.navController
+            attachNavHostFragment(fragmentManager, navHostFragment, index == 0)
+        } else {
+            detachNavHostFragment(fragmentManager, navHostFragment)
+        }
+    }
+
+    // Now connect selecting an item with swapping Fragments
+    var selectedItemTag = graphIdToTagMap[this.menu.currentItem?.itemId ?: 0]
+    val firstFragmentTag = graphIdToTagMap[firstFragmentGraphId]
+    var isOnFirstFragment = selectedItemTag == firstFragmentTag
+
+    // When a navigation item is selected
+    setNavigationItemSelectedListener { item ->
+        menu.currentItem?.isChecked = false
+        item.isChecked = true
+        // Don't do anything if the state is state has already been saved.
+        if (drawerLayout?.isDrawerOpen(GravityCompat.START) == true) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+        if (fragmentManager.isStateSaved) {
+            false
+        } else {
+            val newlySelectedItemTag = graphIdToTagMap[item.itemId]
+            if (selectedItemTag != newlySelectedItemTag) {
+                // Pop everything above the first fragment (the "fixed start destination")
+                fragmentManager.popBackStack(
+                    firstFragmentTag,
+                    FragmentManager.POP_BACK_STACK_INCLUSIVE
+                )
+                val selectedFragment = fragmentManager.findFragmentByTag(newlySelectedItemTag)
+                        as NavHostFragment
+
+                // Exclude the first fragment tag because it's always in the back stack.
+                if (firstFragmentTag != newlySelectedItemTag) {
+                    // Commit a transaction that cleans the back stack and adds the first fragment
+                    // to it, creating the fixed started destination.
+                    fragmentManager.beginTransaction()
+                        .setCustomAnimations(
+                            R.anim.nav_default_enter_anim,
+                            R.anim.nav_default_exit_anim,
+                            R.anim.nav_default_pop_enter_anim,
+                            R.anim.nav_default_pop_exit_anim
+                        )
+                        .attach(selectedFragment)
+                        .setPrimaryNavigationFragment(selectedFragment)
+                        .apply {
+                            // Detach all other Fragments
+                            graphIdToTagMap.forEach { _, fragmentTagIter ->
+                                if (fragmentTagIter != newlySelectedItemTag) {
+                                    detach(fragmentManager.findFragmentByTag(firstFragmentTag)!!)
+                                }
+                            }
+                        }
+                        .addToBackStack(firstFragmentTag)
+                        .setReorderingAllowed(true)
+                        .commit()
+                }
+                selectedItemTag = newlySelectedItemTag
+                isOnFirstFragment = selectedItemTag == firstFragmentTag
+                selectedNavController.value = selectedFragment.navController
+                true
+            } else {
+                false
+            }
+        }
+    }
+
+    // Finally, ensure that we update our BottomNavigationView when the back stack changes
+    fragmentManager.addOnBackStackChangedListener {
+        if (!isOnFirstFragment && !fragmentManager.isOnBackStack(firstFragmentTag)) {
+            this.setCheckedItem(firstFragmentGraphId)
+        }
+
+        // Reset the graph if the currentDestination is not valid (happens when the back
+        // stack is popped after using the back button).
+        selectedNavController.value?.let { controller ->
+            if (controller.currentDestination == null) {
+                controller.navigate(controller.graph.id)
+            }
+        }
+    }
+    return selectedNavController
+}
+
+val Menu.currentItem: MenuItem?
+get() = mutableListOf<MenuItem>().apply {
+    (0 until size()).forEach {
+        add(getItem(it))
+    }
+}.find { it.isChecked }
+
+
+
 fun BottomNavigationView.setupWithNavController(
     navGraphIds: List<Int>,
     fragmentManager: FragmentManager,
@@ -47,7 +186,7 @@ fun BottomNavigationView.setupWithNavController(
 
     // First create a NavHostFragment for each NavGraph ID
     navGraphIds.forEachIndexed { index, navGraphId ->
-        val fragmentTag = getFragmentTag(index)
+        val fragmentTag = "bottomNavigation#$index"
 
         // Find or create the Navigation host fragment
         val navHostFragment = obtainNavHostFragment(
@@ -105,7 +244,8 @@ fun BottomNavigationView.setupWithNavController(
                             R.anim.nav_default_enter_anim,
                             R.anim.nav_default_exit_anim,
                             R.anim.nav_default_pop_enter_anim,
-                            R.anim.nav_default_pop_exit_anim)
+                            R.anim.nav_default_pop_exit_anim
+                        )
                         .attach(selectedFragment)
                         .setPrimaryNavigationFragment(selectedFragment)
                         .apply {
