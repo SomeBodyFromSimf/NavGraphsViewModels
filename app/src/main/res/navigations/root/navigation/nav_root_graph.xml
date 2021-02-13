@@ -33,4 +33,23 @@
     <include app:graph="@navigation/nav_sign_in_graph"/>
     <include app:graph="@navigation/nav_auth_graph" />
 
+
+    <dialog
+        android:id="@+id/returnBackDialog"
+        android:name="com.mihailchistousov.navgraphs.screens.nonauth.ReturnBackDialog"
+        android:label="ReturnBackDialog">
+        <argument
+            android:name="isSignIn"
+            app:argType="boolean"/>
+    </dialog>
+
+    <action
+        android:id="@+id/toReturnDialog"
+        app:destination="@id/returnBackDialog">
+        <argument
+            android:name="isSignIn"
+            app:argType="boolean"
+            android:defaultValue="true" />
+    </action>
+
 </navigation>

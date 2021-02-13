@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/signIn"
     app:startDestination="@id/singInFragment">
+
     <fragment
         android:id="@+id/singInFragment"
         android:name="com.mihailchistousov.navgraphs.screens.nonauth.signin.SingInFragment"
@@ -13,6 +14,7 @@
             android:id="@+id/to_sign_in_2"
             app:destination="@id/signIn2Fragment" />
     </fragment>
+
     <fragment
         android:id="@+id/signIn2Fragment"
         android:name="com.mihailchistousov.navgraphs.screens.nonauth.signin.SingIn2Fragment"
@@ -22,6 +24,7 @@
             android:id="@+id/to_data"
             app:destination="@id/dataFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/dataFragment"
         android:name="com.mihailchistousov.navgraphs.screens.nonauth.signin.DataFragment"

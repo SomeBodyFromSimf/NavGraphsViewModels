@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.mihailchistousov.navgraphs.MainDirections
 import com.mihailchistousov.navgraphs.R
 import com.mihailchistousov.navgraphs.requireGrandParentFragment
 import com.mihailchistousov.navgraphs.screens.auth.main.main.MainVM
@@ -21,6 +22,10 @@ class FirstFr : Fragment(R.layout.first_local){
         view.findViewById<Button>(R.id.go_to_second).setOnClickListener {
             viewModel.changeSum(11)
             findNavController().navigate(FirstFrDirections.toSecond())
+        }
+        view.findViewById<Button>(R.id.logOut).setOnClickListener {
+            viewModel.changeSum(19)
+            requireGrandParentFragment().requireGrandParentFragment().findNavController().navigate(MainDirections.logOut())
         }
     }
 
