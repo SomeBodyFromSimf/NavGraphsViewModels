@@ -32,6 +32,23 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res',
+                    'src/main/res/layouts',
+                    'src/main/res/layouts/fragments',
+                    'src/main/res/layouts/fragments/auth',
+                    'src/main/res/layouts/fragments/nonauth',
+                    'src/main/res/layouts/fragments/nonauth/signIn',
+                    'src/main/res/layouts/fragments/nonauth/signUp',
+                    'src/main/res/navigations/root',
+                    'src/main/res/navigations/root/drawer_main',
+                    'src/main/res/navigations/root/drawer_main/local_main',
+
+            ]
+        }
+    }
 }
 
 dependencies {
