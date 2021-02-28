@@ -11,7 +11,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/feature_sign_up" />
+            <option value="$PROJECT_DIR$/root_graph" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

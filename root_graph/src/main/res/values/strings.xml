@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">NavGraphs</string>
+    <string name="calls">Звонки</string>
+    <string name="end_calls">Пропущенные</string>
+    <string name="info">Информация</string>
+    <string name="open">Открыть</string>
+    <string name="close">Закрыть</string>
+    <string name="main">Основной</string>
+    <string name="maps">Карты</string>
+    <string name="settings">Настройки</string>
+    <string name="yes_go">Да, давай!</string>
+    <string name="stop_sign_in">Уверены, выйти на главный экран?</string>
+    <string name="no">Нет</string>
+    <string name="title_feature_sign_up">Feature_SignUp</string>
+</resources>

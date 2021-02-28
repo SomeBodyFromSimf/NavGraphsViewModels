@@ -1,2 +1,3 @@
-include ':app'
+include ':feature_sign_up'
+include ':root_graph'
 rootProject.name = "NavGraphs"

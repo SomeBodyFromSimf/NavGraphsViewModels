@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:moduleName="feature_sign_up"
+    android:id="@id/feature_sign_up_graph"
+    app:startDestination="@id/signUpFragment">
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.mihailchistousov.feature_sign_up.screens.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/up">
+        <action
+            android:id="@+id/to_second"
+            app:destination="@id/signUp2Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUp2Fragment"
+        android:name="com.mihailchistousov.feature_sign_up.screens.SignUp2Fragment"
+        android:label="SignUp2Fragment"
+        tools:layout="@layout/up2">
+
+    </fragment>
+
+    <action
+        android:id="@+id/logOut"
+        app:destination="@id/choiceFragment"
+        app:popUpToInclusive="true"
+        app:popUpTo="@id/feature_sign_up_graph"/>
+
+    <dialog
+        android:id="@+id/returnBackDialog"
+        android:name="com.mihailchistousov.feature_sign_up.screens.ReturnBackDialog"
+        android:label="ReturnBackDialog">
+    </dialog>
+
+    <action
+        android:id="@+id/toReturnDialog"
+        app:destination="@id/returnBackDialog">
+    </action>
+
+</navigation>

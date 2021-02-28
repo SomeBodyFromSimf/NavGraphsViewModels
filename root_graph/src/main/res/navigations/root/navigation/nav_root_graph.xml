@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.mihailchistousov.navgraphs.screens.nonauth.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/splash">
+        <action
+            android:id="@+id/to_choice"
+            app:destination="@id/choiceFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/choiceFragment"
+        android:name="com.mihailchistousov.navgraphs.screens.nonauth.choice.ChoiceFragment"
+        android:label="ChoiceFragment"
+        tools:layout="@layout/choice">
+        <action
+            android:id="@+id/to_sign_up"
+            app:destination="@id/feature_sign_up_graph" />
+        <action
+            android:id="@+id/to_sign_in"
+            app:destination="@id/signIn" />
+    </fragment>
+
+    <include app:graph="@navigation/nav_sign_in_graph"/>
+    <include app:graph="@navigation/nav_auth_graph" />
+
+    <include-dynamic
+        android:id="@+id/feature_sign_up_graph"
+        app:moduleName="feature_sign_up"
+        app:graphResName="feature_sign_up_graph"
+        app:graphPackage="${applicationId}.feature_sign_up" />
+
+
+    <dialog
+        android:id="@+id/returnBackDialog"
+        android:name="com.mihailchistousov.navgraphs.screens.nonauth.ReturnBackDialog"
+        android:label="ReturnBackDialog">
+    </dialog>
+
+    <action
+        android:id="@+id/toReturnDialog"
+        app:destination="@id/returnBackDialog"/>
+
+</navigation>
