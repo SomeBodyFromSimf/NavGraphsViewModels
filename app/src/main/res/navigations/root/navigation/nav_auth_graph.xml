@@ -23,5 +23,10 @@
         android:id="@+id/logOut"
         app:destination="@id/choiceFragment"
         app:popUpToInclusive="true"
-        app:popUpTo="@id/main"/>
+        app:popUpTo="@id/main">
+        <argument
+            android:name="isNeedAnim"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </action>
 </navigation>

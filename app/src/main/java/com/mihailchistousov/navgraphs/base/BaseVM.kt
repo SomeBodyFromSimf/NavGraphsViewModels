@@ -1,27 +1,33 @@
 package com.mihailchistousov.navgraphs.base
 
-import android.util.Log
+import android.content.res.Resources
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.shareIn
+import javax.inject.Inject
 
 open class BaseVM : ViewModel() {
 
-    private var summ = 0
-    init {
-        Log.d(TAG,"create ${javaClass.simpleName}")
-    }
+    protected val tasksEventChannel = Channel<Event>()
+    val tasksEvent =
+        tasksEventChannel.receiveAsFlow().shareIn(viewModelScope, SharingStarted.Lazily, 0)
 
-    fun changeSum(i: Int) {
-        summ = i
-    }
+    @Inject
+    lateinit var resources: Resources
 
-    fun getSum() = summ
-
-    override fun onCleared() {
-        super.onCleared()
-        Log.d(TAG,"clear ${javaClass.simpleName}")
-    }
-
-    companion object {
-        const val TAG = "BaseVM"
-    }
 }
+
+open class Event
+
+object LogOffEvent : Event()
+object StartProgressEvent : Event()
+object StopProgressEvent : Event()
+data class ShowInfoDialogEvent(
+    val title: String?,
+    val message: String,
+    val positiveBtn: String? = null,
+    val negativeBtn: String? = null
+) : Event()

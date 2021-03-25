@@ -1,17 +1,17 @@
 package com.mihailchistousov.navgraphs.screens.auth.main.maps
 
-import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
-import androidx.navigation.navGraphViewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mihailchistousov.navgraphs.R
+import com.mihailchistousov.navgraphs.base.BaseFragment
+import com.mihailchistousov.navgraphs.databinding.Maps2Binding
+import dagger.hilt.android.AndroidEntryPoint
 
 
-class MapsSecFr: Fragment(R.layout.maps2) {
-    private val viewModel: MapsVM by navGraphViewModels(R.id.maps)
+@AndroidEntryPoint
+class MapsSecFr : BaseFragment<MapsVM>(R.layout.maps2) {
+    override val viewModel: MapsVM by hiltNavGraphViewModels(R.id.maps)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val s = viewModel.getSum()
-    }
+    private val binding by viewBinding(Maps2Binding::bind)
+
 }

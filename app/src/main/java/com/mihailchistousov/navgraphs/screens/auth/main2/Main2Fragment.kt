@@ -1,24 +1,25 @@
 package com.mihailchistousov.navgraphs.screens.auth.main2
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.mihailchistousov.navgraphs.MainDirections
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mihailchistousov.navgraphs.R
+import com.mihailchistousov.navgraphs.base.BaseFragment
+import com.mihailchistousov.navgraphs.databinding.Main2Binding
+import dagger.hilt.android.AndroidEntryPoint
 
-class Main2Fragment: Fragment(R.layout.main2) {
-    private val viewModel: MainVM2 by viewModels()
+@AndroidEntryPoint
+class Main2Fragment : BaseFragment<MainVM2>(R.layout.main2) {
+    override val viewModel: MainVM2 by viewModels()
+
+    private val binding by viewBinding(Main2Binding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val s = viewModel.getSum()
-        Log.d("BaseVM", "main2 sum is $s")
-        view.findViewById<Button>(R.id.logOut).setOnClickListener {
-            findNavController().navigate(MainDirections.logOut())
+        binding.logOut.setOnClickListener {
+            findNavController().navigate(R.id.logOut)
         }
     }
 }

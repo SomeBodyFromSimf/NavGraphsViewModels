@@ -1,16 +1,16 @@
 package com.mihailchistousov.navgraphs.screens.auth.main.settings
 
-import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
-import androidx.navigation.navGraphViewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mihailchistousov.navgraphs.R
+import com.mihailchistousov.navgraphs.base.BaseFragment
+import com.mihailchistousov.navgraphs.databinding.SettingsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class SettingFr: Fragment(R.layout.settings) {
-    private val viewModel: SettingsVM by navGraphViewModels(R.id.settingFr)
+@AndroidEntryPoint
+class SettingFr : BaseFragment<SettingsVM>(R.layout.settings) {
+    override val viewModel: SettingsVM by hiltNavGraphViewModels(R.id.settingFr)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val s = viewModel.getSum()
-    }
+    private val binding by viewBinding(SettingsBinding::bind)
+
 }

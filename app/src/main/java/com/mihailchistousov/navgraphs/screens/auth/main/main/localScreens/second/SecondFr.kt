@@ -1,27 +1,27 @@
 package com.mihailchistousov.navgraphs.screens.auth.main.main.localScreens.second
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mihailchistousov.navgraphs.R
-import com.mihailchistousov.navgraphs.requireGrandParentFragment
+import com.mihailchistousov.navgraphs.base.BaseFragment
+import com.mihailchistousov.navgraphs.databinding.SecondLocalBinding
 import com.mihailchistousov.navgraphs.screens.auth.main.main.MainVM
+import com.mihailchistousov.navgraphs.utils.requireGrandParentFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class SecondFr : Fragment(R.layout.second_local){
-    private val viewModel: MainVM by viewModels({requireGrandParentFragment()})
+@AndroidEntryPoint
+class SecondFr : BaseFragment<MainVM>(R.layout.second_local) {
+    override val viewModel: MainVM by viewModels({ requireGrandParentFragment() })
 
+    private val binding by viewBinding(SecondLocalBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val s = viewModel.getSum()
-        Log.d("BaseVM", "main local_21 sum is $s")
-        view.findViewById<Button>(R.id.go_to_second).setOnClickListener {
-            viewModel.changeSum(21)
-            findNavController().navigate(SecondFrDirections.toSecond())
+        binding.goToSecond.setOnClickListener {
+            findNavController().navigate(R.id.toSecond)
         }
     }
 

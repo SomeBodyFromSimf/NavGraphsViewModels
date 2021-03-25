@@ -2,22 +2,24 @@ package com.mihailchistousov.navgraphs.screens.auth.main.maps
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import androidx.fragment.app.Fragment
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mihailchistousov.navgraphs.R
+import com.mihailchistousov.navgraphs.base.BaseFragment
+import com.mihailchistousov.navgraphs.databinding.Maps1Binding
+import dagger.hilt.android.AndroidEntryPoint
 
-class MapsFr: Fragment(R.layout.maps1) {
+@AndroidEntryPoint
+class MapsFr : BaseFragment<MapsVM>(R.layout.maps1) {
 
-    private val viewModel: MapsVM by navGraphViewModels(R.id.maps)
+    override val viewModel: MapsVM by hiltNavGraphViewModels(R.id.maps)
+    private val binding by viewBinding(Maps1Binding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val s = viewModel.getSum()
-        view.findViewById<Button>(R.id.go).setOnClickListener {
-            viewModel.changeSum(444)
-            findNavController().navigate(MapsFrDirections.goToSecond())
+        binding.go.setOnClickListener {
+            findNavController().navigate(R.id.go_to_second)
         }
     }
 }

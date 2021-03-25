@@ -12,4 +12,12 @@
     <string name="stop_sign_in">Уверены, выйти на главный экран?</string>
     <string name="stop_sign_up">Прекратить регистрацию?</string>
     <string name="no">Нет</string>
+    <string name="sign_up_title">Регистрация</string>
+    <string name="sign_in_title">Вход</string>
+    <string name="not_correct_error">Введено некоректное значение</string>
+    <string name="empty_error">Введите значение</string>
+    <string name="pass_error">Пароль должен состоять из не менее 8 символов, содержать буквы верхнего и нижнего регистра</string>
+    <string name="default_error_message">Хьюстон у нас проблемы</string>
+    <string name="ok">Ok</string>
+    <string name="correct_sign_up">Вы успешно зарегистрировались</string>
 </resources>

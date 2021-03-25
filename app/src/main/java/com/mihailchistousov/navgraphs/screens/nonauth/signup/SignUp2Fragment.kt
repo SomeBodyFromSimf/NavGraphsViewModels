@@ -1,30 +1,47 @@
 package com.mihailchistousov.navgraphs.screens.nonauth.signup
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
 import androidx.activity.addCallback
-import androidx.fragment.app.Fragment
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mihailchistousov.navgraphs.R
-import com.mihailchistousov.navgraphs.screens.nonauth.ReturnBackDialogDirections
+import com.mihailchistousov.navgraphs.base.BaseFragment
+import com.mihailchistousov.navgraphs.base.Event
+import com.mihailchistousov.navgraphs.databinding.Up2Binding
+import com.mihailchistousov.navgraphs.screens.nonauth.choice.ChoiceFragment
+import com.mihailchistousov.navgraphs.screens.nonauth.splash.TimerEvent
+import com.mihailchistousov.navgraphs.utils.Constants
+import dagger.hilt.android.AndroidEntryPoint
 
-class SignUp2Fragment: Fragment(R.layout.up2) {
+@AndroidEntryPoint
+class SignUp2Fragment : BaseFragment<SignUpVM>(R.layout.up2) {
 
-    private val viewModel: SignUpVM by navGraphViewModels(R.id.signUp)
+    override val viewModel: SignUpVM by hiltNavGraphViewModels(R.id.signUp)
+
+    private val binding by viewBinding(Up2Binding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val s = viewModel.getSum()
-        Log.d("BaseVM", "up2 sum is $s")
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            findNavController().navigate(ReturnBackDialogDirections.toReturnDialog(false))
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) { }
+        viewModel.goBack()
+    }
+
+    override fun onEvent(event: Event) {
+        super.onEvent(event)
+        when (event) {
+            is TimerEvent -> goBack()
         }
-        view.findViewById<Button>(R.id.go).setOnClickListener {
-            viewModel.changeSum(11)
-            findNavController().popBackStack(R.id.choiceFragment,false)
-        }
+    }
+
+    private fun goBack() {
+        setFragmentResult(
+            ChoiceFragment.REQUEST_KEY_CHOICE,
+            bundleOf(Constants.IS_NEED_ANIM to false)
+        )
+        findNavController().popBackStack(R.id.choiceFragment, false)
     }
 }

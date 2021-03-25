@@ -1,43 +1,42 @@
 package com.mihailchistousov.navgraphs.screens.auth.main.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.mihailchistousov.navgraphs.MainDirections
 import com.mihailchistousov.navgraphs.R
-import com.mihailchistousov.navgraphs.requireGrandParentFragment
-import com.mihailchistousov.navgraphs.screens.auth.main.MainAuthFragmentDirections
+import com.mihailchistousov.navgraphs.base.BaseFragment
+import com.mihailchistousov.navgraphs.databinding.MainAuthBinding
 import com.mihailchistousov.navgraphs.setupWithNavController
+import com.mihailchistousov.navgraphs.utils.requireGrandParentFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainFragment: Fragment(R.layout.main_auth) {
+@AndroidEntryPoint
+class MainFragment : BaseFragment<MainVM>(R.layout.main_auth) {
 
-    private val viewModel: MainVM by viewModels()
+    override val viewModel: MainVM by viewModels()
+
+    private val binding by viewBinding(MainAuthBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val s = viewModel.getSum()
-        Log.d("BaseVM", "main sum is $s")
-        view.findViewById<Button>(R.id.go).setOnClickListener {
-            viewModel.changeSum(3)
-            requireGrandParentFragment().findNavController().navigate(MainAuthFragmentDirections.toMain2())
+        binding.go.setOnClickListener {
+            requireGrandParentFragment().findNavController().navigate(R.id.to_main_2)
         }
-        view.findViewById<Button>(R.id.logOut).setOnClickListener {
-            requireGrandParentFragment().findNavController().navigate(MainDirections.logOut())
+        binding.logOut.setOnClickListener {
+            requireGrandParentFragment().findNavController().navigate(R.id.logOut)
         }
-        if(savedInstanceState == null)
-            view.findViewById<BottomNavigationView>(R.id.bNavView).init(childFragmentManager)
+        if (savedInstanceState == null)
+            binding.bNavView.init(childFragmentManager)
 
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        view?.findViewById<BottomNavigationView>(R.id.bNavView)?.init(childFragmentManager)
+        binding.bNavView.init(childFragmentManager)
 
     }
 

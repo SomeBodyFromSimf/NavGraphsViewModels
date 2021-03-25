@@ -7,29 +7,33 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.navigation.NavigationView
 import com.mihailchistousov.navgraphs.R
+import com.mihailchistousov.navgraphs.databinding.MainBinding
 import com.mihailchistousov.navgraphs.setupWithNavController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainAuthFragment: Fragment(R.layout.main) {
 
     private lateinit var toggle: ActionBarDrawerToggle
 
+    private val binding by viewBinding(MainBinding::bind)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val drawerLayout = view.findViewById<DrawerLayout>(R.id.drawerLayout)
-        toggle = ActionBarDrawerToggle(activity, drawerLayout,R.string.open,R.string.close)
+        toggle = ActionBarDrawerToggle(activity, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-
-        activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
-        if(savedInstanceState == null)
-            view.findViewById<NavigationView>(R.id.navView).init(childFragmentManager)
+        if (savedInstanceState == null)
+            binding.navView.init(childFragmentManager)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        view?.findViewById<NavigationView>(R.id.navView).init(childFragmentManager)
+        binding.navView.init(childFragmentManager)
 
     }
 

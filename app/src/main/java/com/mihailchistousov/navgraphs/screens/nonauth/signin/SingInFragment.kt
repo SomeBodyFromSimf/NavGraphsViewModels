@@ -1,30 +1,30 @@
 package com.mihailchistousov.navgraphs.screens.nonauth.signin
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
 import androidx.activity.addCallback
-import androidx.fragment.app.Fragment
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mihailchistousov.navgraphs.R
-import com.mihailchistousov.navgraphs.screens.nonauth.ReturnBackDialogDirections
+import com.mihailchistousov.navgraphs.base.BaseFragment
+import com.mihailchistousov.navgraphs.databinding.In1Binding
+import dagger.hilt.android.AndroidEntryPoint
 
-class SingInFragment: Fragment(R.layout.in1) {
+@AndroidEntryPoint
+class SingInFragment : BaseFragment<SignInVM>(R.layout.in1) {
 
-    private val viewModel: SignInVM by navGraphViewModels(R.id.signIn)
+    override val viewModel: SignInVM by hiltNavGraphViewModels(R.id.signIn)
+
+    private val binding: In1Binding by viewBinding(In1Binding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val s = viewModel.getSum()
-        Log.d("BaseVM", "in sum is $s")
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            findNavController().navigate(ReturnBackDialogDirections.toReturnDialog())
+            findNavController().navigate(R.id.toReturnDialog)
         }
-        view.findViewById<Button>(R.id.go).setOnClickListener {
-            viewModel.changeSum(9)
-            findNavController().navigate(SingInFragmentDirections.toSignIn2())
+        binding.go.setOnClickListener {
+            findNavController().navigate(R.id.to_sign_in_2)
         }
     }
 }

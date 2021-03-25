@@ -1,21 +1,17 @@
 package com.mihailchistousov.navgraphs.screens.auth.main.main.localScreens.third
 
-import android.os.Bundle
-import android.util.Log
-import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mihailchistousov.navgraphs.R
-import com.mihailchistousov.navgraphs.requireGrandParentFragment
+import com.mihailchistousov.navgraphs.base.BaseFragment
+import com.mihailchistousov.navgraphs.databinding.Third2LocalBinding
 import com.mihailchistousov.navgraphs.screens.auth.main.main.MainVM
+import com.mihailchistousov.navgraphs.utils.requireGrandParentFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class ThirdSecFr : Fragment(R.layout.third2_local){
-    private val viewModel: MainVM by viewModels({requireGrandParentFragment()})
+@AndroidEntryPoint
+class ThirdSecFr : BaseFragment<MainVM>(R.layout.third2_local) {
+    override val viewModel: MainVM by viewModels({ requireGrandParentFragment() })
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val s = viewModel.getSum()
-        Log.d("BaseVM", "main local_32 sum is $s")
-        viewModel.changeSum(32)
-    }
+    private val binding by viewBinding(Third2LocalBinding::bind)
 }
